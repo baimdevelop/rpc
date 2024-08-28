@@ -1,30 +1,19 @@
-import requests
+import openai
 
-# Ganti dengan kunci API Anda
-API_KEY = 'YOUR_API_KEY_HERE'
+# API key bawaan
+api_key = 'sk-d2sBeA0BxoQ2EqD-zEN0zOw84NdKJ6TAUVVOu1IgsNT3BlbkFJDBOA83Dg_grqDRKrtlb7LL0vsFrLggahNTSXbdCJ4A'
+openai.api_key = api_key
 
-# Ganti dengan URL endpoint API Gemini
-API_URL = 'https://api.gemini.ai/v1/ask'
+# Minta prompt dari pengguna
+prompt_text = input("Masukkan prompt untuk OpenAI: ")
 
-def query_ai_gemini(question):
-    headers = {
-        'Authorization': f'Bearer {API_KEY}',
-        'Content-Type': 'application/json'
-    }
+# Buat permintaan ke API OpenAI
+response = openai.Completion.create(
+    engine="text-davinci-003",  # Anda bisa mengganti model sesuai kebutuhan
+    prompt=prompt_text,
+    max_tokens=50
+)
 
-    data = {
-        'question': question
-    }
-
-    response = requests.post(API_URL, headers=headers, json=data)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return {'error': response.text}
-
-# Contoh penggunaan
-if __name__ == '__main__':
-    question = 'Apa itu AI Gemini?'
-    result = query_ai_gemini(question)
-    print(result)
+# Tampilkan respons
+print("Respons dari OpenAI:")
+print(response.choices[0].text.strip())
