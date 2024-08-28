@@ -1,7 +1,7 @@
 import openai
 
 # API key bawaan
-api_key = 'sk-d2sBeA0BxoQ2EqD-zEN0zOw84NdKJ6TAUVVOu1IgsNT3BlbkFJDBOA83Dg_grqDRKrtlb7LL0vsFrLggahNTSXbdCJ4A'
+api_key = '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'
 openai.api_key = api_key
 
 # Minta prompt dari pengguna
